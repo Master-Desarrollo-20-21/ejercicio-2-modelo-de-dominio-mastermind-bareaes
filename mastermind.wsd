@@ -1,0 +1,50 @@
+@startuml mastermind
+Mastermind *-- "2" Player
+Mastermind *-- Board
+
+Player *-- Turn
+Player *-- "1" Goal
+
+Board *-- "1" Shield
+Board *-- "12x5" Decoder
+Board *-- "12x5" Clues
+Board *-- "1" Score
+Board *-- "1" ColouredPInBox
+Board *-- "1" BWPinBox
+Board *-- ScorePins
+
+Shield *-- "1x5" PlayerCode
+PlayerCode o-- Combination
+
+Clues <-- WhiteCluePins
+Clues <-- BlackCluePins  
+Score "0..?" <--  BlueScorePins
+Score "0..?" <--  RedScorePins
+ColouredPInBox <|-- "24" RedPins
+ColouredPInBox <|-- "24" BluePins
+ColouredPInBox <|-- "24" GreenPins
+ColouredPInBox <|-- "24" YellowPins
+ColouredPInBox <|-- "24" WhitePins
+ColouredPInBox <|-- "24" PinkPins
+ColouredPInBox <|-- "24" BlackPins
+ColouredPInBox <|-- "24" BrownPins
+Combination *-- Position4
+Combination *-- Position5
+Combination *-- Position1
+Combination *-- Position2
+Combination *-- Position3
+Position1 "1" o-- ColouredPInBox
+Position2 "1" o-- ColouredPInBox
+Position3 "1" o-- ColouredPInBox
+Position4 "1" o-- ColouredPInBox
+Position5 "1" o-- ColouredPInBox
+Combination --o Decoder
+BWPinBox <|-- "30" WhiteCluePins
+BWPinBox <|-- "30" BlackCluePins
+ScorePins <|-- "2" RedScorePins
+ScorePins <|-- "2" BlueScorePins
+MatchCode o-- Combination
+MatchCode --> PlayerCode
+Turn --> Combination
+Goal --* MatchCode
+@enduml
